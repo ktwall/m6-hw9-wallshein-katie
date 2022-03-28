@@ -2,24 +2,31 @@ var form = document.querySelector('form')
 var locationInput = document.querySelector('input[type=text]')
 var weatherInput = document.querySelector('input[type=number]')
 
-    form.onsubmit = function(e){
-        e.preventDefault()
-        console.log(locationInput.value)
+//*let form = document.querySelector('form')
+//*let input = document.querySelector('input')
+//*let weather = document.querySelector('weather')
+
+    //*form.onsubmit = function(e){
+        //*e.preventDefault()
+        //*console.log(locationInput.value)
         //*console.log(weatherInput.value)
         //*console.log(Object.fromEntries(formData))
+    form.addEventListener('submit', function(e) {
+        e.preventDefault()
+        console.log(Object.fromEntries(new FormData(e.target)))
         fetch('https://api.openweathermap.org/data/2.5/weather?appid=a502e2667bdfdef9e5cc8724f2b91a62&units=imperial&q=' + locationInput.value) 
         .then(function(response) {
-        return response.json() 
-    })
+        return response.json(); 
+        })
         .then(function(data) {
         console.log(data) 
         locationInput.value = "";
-    })
-    .catch(function(error) {
+        })
+        .catch(function(error) {
         console.log(error);
         weatherInput.innerHTML = "Please try a different location"
+        })
     })
-    }
 
 function weatherInputResult (weatherInput) {
     weatherInput.innerHTML = "";
