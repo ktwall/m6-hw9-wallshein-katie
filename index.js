@@ -14,14 +14,14 @@ function weatherResult(weatherObject) {
     city.textContent = weatherObject.name + ", " + weatherObject.sys.country
     weather.appendChild(city)
 
+    var img = document.createElement('img')
+    img.src = "http://openweathermap.org/img/wn/" + weatherObject.weather[0].icon + "@2x.png";
+    console.log(img.src)
+    weather.appendChild(img)
+
     var description = document.createElement('h3')
     description.textContent = "Weather: " + weatherObject.weather[0].description;
     weather.appendChild(description)
-
-    var img = document.createElement('img')
-    img.src = "http://openweathermap.org/img/wn" + weatherObject.weather[0].icon + "@2x.png";
-    console.log(img.src)
-    weather.appendChild(img)
 
     var temperature = document.createElement('h3')
     temperature.textContent = "Current: " + weatherObject.main.temp;
