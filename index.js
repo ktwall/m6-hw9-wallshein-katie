@@ -2,30 +2,9 @@ var form = document.querySelector('form')
 var input = document.querySelector('input')
 var weather = document.getElementById('weather')
 
-
-form.addEventListener('submit', function (e) {
-    e.preventDefault()
-    console.log(Object.fromEntries(new FormData(e.target)))
-
-    fetch('https://api.openweathermap.org/data/2.5/weather?appid=a502e2667bdfdef9e5cc8724f2b91a62&units=imperial&q=' + input.value)
-        .then(function (fetchedResponse) {
-            return fetchedResponse.json();
-        })
-        .then(function (jsonResponse) {
-            console.log(jsonResponse)
-            var showResults = document.getElementById('weather')
-            showResults.querySelector.appendChild(renderWeather(jsonResponse))
-        })
-        .catch(function (error) {
-            console.log(error);
-            var error = document.getElementById('weather')
-            error.innerHTML = "Please try a different location"
-        })
-})
-
 function weatherResult(weatherObject) {
     weather.innerHTML = "";
-
+    console.log('test'+weatherObject)
     if (weatherObject.Response === 'False') {
         weather.textContent = 'Please try a different location';
         return //*response.json()
@@ -41,6 +20,7 @@ function weatherResult(weatherObject) {
 
     var img = document.createElement('img')
     img.src = "http://openweathermap.org/img/wn" + weatherObject.weather[0].icon + "@2x.png";
+    console.log(img.src)
     weather.appendChild(img)
 
     var temperature = document.createElement('h3')
@@ -51,7 +31,27 @@ function weatherResult(weatherObject) {
     feelsLike.textContent = "Feels like : " + weatherObject.main.feels_like;
     weather.appendChild(feelsLike)
 
-    return weatherObject
-
 }
+
+form.addEventListener('submit', function (e, ) {
+
+    e.preventDefault()
+    console.log(Object.fromEntries(new FormData(e.target)))
+
+    fetch('https://api.openweathermap.org/data/2.5/weather?appid=a502e2667bdfdef9e5cc8724f2b91a62&units=imperial&q=' + input.value)
+        .then(function (fetchedResponse) {
+            return fetchedResponse.json();
+        })
+        .then(function (jsonResponse) {
+            console.log(jsonResponse)
+            weatherResult(jsonResponse)
+        })
+        .catch(function (error) {
+            console.log(error);
+            var error = document.getElementById('weather')
+            error.innerHTML = "Please try a different location"
+        })
+})
+
+
 
