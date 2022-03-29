@@ -17,7 +17,7 @@ function weatherResult(weatherObject) {
     var img = document.createElement('img')
     img.src = "https://openweathermap.org/img/wn/" + weatherObject.weather[0].icon + "@2x.png";
     console.log(img.src)
-    weather.appendChild(img)ß
+    weather.appendChild(img)
 
     var description = document.createElement('h3')
     description.textContent = "Weather: " + weatherObject.weather[0].description;
