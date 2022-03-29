@@ -130,7 +130,7 @@ table {
 body {
     font-family: 'Playfair Display', serif;
     background-image: linear-gradient(to right, rgb(0, 5, 65) , rgb(110, 180, 255));
-
+    color: #fff;
 }
   
 /* Header */
