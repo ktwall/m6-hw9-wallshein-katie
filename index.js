@@ -24,11 +24,11 @@ function weatherResult(weatherObject) {
     weather.appendChild(description)
 
     var temperature = document.createElement('h3')
-    temperature.textContent = "Current: " + weatherObject.main.temp;
+    temperature.textContent = "Current: " + weatherObject.main.temp + " \u2109";
     weather.appendChild(temperature)
 
     var feelsLike = document.createElement('h3')
-    feelsLike.textContent = "Feels like : " + weatherObject.main.feels_like;
+    feelsLike.textContent = "Feels like : " + weatherObject.main.feels_like + " \u2109";
     weather.appendChild(feelsLike)
 
 }
